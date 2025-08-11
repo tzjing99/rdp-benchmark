@@ -5,89 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RDP Benchmark Gallery</title>
 <style>
-  body {
-    margin: 0;
-    font-family: system-ui, Arial, sans-serif;
-    background: #f8f9fa;
-    color: #333;
-  }
-  header {
-    background: #222;
-    color: #fff;
-    padding: 16px;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
-    padding: 20px;
-    max-width: 1920px;
-    margin: auto;
-  }
-  .card {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 8px;
-    transition: transform 0.15s ease;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-  }
-  .card img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 6px;
-  }
-  .label {
-    margin-top: 6px;
-    font-size: 12px;
-    color: #666;
-    text-align: center;
-    word-break: break-all;
-  }
+  body { margin:0; font-family:system-ui, Arial, sans-serif; background:#f8f9fa; color:#333; }
+  header { background:#222; color:#fff; padding:16px; font-size:20px; font-weight:bold; text-align:center; }
+  .gallery { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:16px; padding:20px; max-width:1920px; margin:auto; }
+  .card { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,.08);
+          display:flex; flex-direction:column; align-items:center; padding:8px; transition:transform .15s ease; }
+  .card:hover { transform: translateY(-4px); }
+  .card img { width:100%; height:auto; object-fit:contain; }
+  .label { margin-top:6px; font-size:12px; color:#666; text-align:center; word-break:break-all; }
 </style>
 </head>
 <body>
-
 <header>RDP Image Match Benchmark</header>
-
 <div class="gallery" id="gallery"></div>
 
 <script>
-  // Number of images you expect (adjust this number)
-  const totalImages = 20; // change if you have more/less
+  const totalImages = 20; // set to your highest index
   const gallery = document.getElementById('gallery');
 
-  for (let i = 1; i <= totalImages; i++) {
-    const imgName = `img${i}.png`; // could also be jpg
+  function addCard(baseName) {
     const card = document.createElement('div');
     card.className = 'card';
 
     const img = document.createElement('img');
-    img.src = `images/${imgName}`;
-    img.alt = imgName;
-    img.onerror = function() {
-      this.parentElement.remove(); // remove card if image not found
+    // Try JPG first
+    img.src = `images/${baseName}.jpg`;
+    img.alt = `${baseName}`;
+
+    // If JPG fails, try PNG; if both fail, remove card
+    img.onerror = function onJpgError() {
+      img.onerror = function onPngError() {
+        card.remove();
+      };
+      img.src = `images/${baseName}.png`;
     };
 
     const label = document.createElement('div');
     label.className = 'label';
-    label.textContent = imgName;
+    label.textContent = `${baseName}`;
 
     card.appendChild(img);
     card.appendChild(label);
     gallery.appendChild(card);
   }
-</script>
 
+  for (let i = 1; i <= totalImages; i++) addCard(`img${i}`);
+</script>
 </body>
 </html>
