@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RDP Image Match Benchmark</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .container {
+      width: 1920px;
+      height: 1080px;
+      margin: 0 auto;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fff;
+      padding: 5px;
+    }
+    .item img {
+      max-width: 100px;
+      max-height: 100px;
+      object-fit: contain;
+    }
+    .label {
+      font-size: 12px;
+      margin-top: 5px;
+      color: #555;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <header>RDP Image Match Benchmark (Static Test Page)</header>
+  <div class="container">
+
+    <!-- Color Swatches -->
+    <div class="section" id="colors">
+      <h2>Colors</h2>
+      <div class="grid">
+        <div class="item"><img src="images/swatch_99C4FF.png" alt="swatch_99C4FF"><div class="label">swatch_99C4FF</div></div>
+        <div class="item"><img src="images/swatch_FF9AA2.png" alt="swatch_FF9AA2"><div class="label">swatch_FF9AA2</div></div>
+        <div class="item"><img src="images/swatch_B9FBC0.png" alt="swatch_B9FBC0"><div class="label">swatch_B9FBC0</div></div>
+        <div class="item"><img src="images/swatch_FFCF6F.png" alt="swatch_FFCF6F"><div class="label">swatch_FFCF6F</div></div>
+      </div>
+    </div>
+
+    <!-- Icons -->
+    <div class="section" id="icons">
+      <h2>Icons</h2>
+      <div class="grid">
+        <div class="item"><img src="images/icon_gear.png" alt="icon_gear"><div class="label">icon_gear</div></div>
+        <div class="item"><img src="images/icon_star.png" alt="icon_star"><div class="label">icon_star</div></div>
+        <div class="item"><img src="images/icon_check.png" alt="icon_check"><div class="label">icon_check</div></div>
+      </div>
+    </div>
+
+    <!-- Text Samples -->
+    <div class="section" id="text">
+      <h2>Text</h2>
+      <div class="grid">
+        <div class="item"><img src="images/txt_RDP_A.png" alt="txt_RDP_A"><div class="label">txt_RDP_A</div></div>
+        <div class="item"><img src="images/txt_RDP_B.png" alt="txt_RDP_B"><div class="label">txt_RDP_B</div></div>
+      </div>
+    </div>
+
+    <!-- Gradients -->
+    <div class="section" id="gradients">
+      <h2>Gradients</h2>
+      <div class="grid">
+        <div class="item"><img src="images/grad_blue.png" alt="grad_blue"><div class="label">grad_blue</div></div>
+        <div class="item"><img src="images/grad_sunset.png" alt="grad_sunset"><div class="label">grad_sunset</div></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
