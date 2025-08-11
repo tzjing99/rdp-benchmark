@@ -7,12 +7,33 @@
 <style>
   body { margin:0; font-family:system-ui, Arial, sans-serif; background:#f8f9fa; color:#333; }
   header { background:#222; color:#fff; padding:16px; font-size:20px; font-weight:bold; text-align:center; }
-  .gallery { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:16px; padding:20px; max-width:1920px; margin:auto; }
-  .card { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,.08);
-          display:flex; flex-direction:column; align-items:center; padding:8px; transition:transform .15s ease; }
+  .gallery { 
+    display:grid; 
+    grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); 
+    gap:16px; 
+    padding:20px; 
+    max-width:1920px; 
+    margin:auto; 
+  }
+  .card { 
+    background:#fff; 
+    border-radius:10px; 
+    overflow:hidden; 
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    padding:8px; 
+    transition:transform .15s ease; 
+    height:200px; /* fixed card height */
+    justify-content:center;
+  }
   .card:hover { transform: translateY(-4px); }
-  .card img { width:100%; height:auto; object-fit:contain; }
-  .label { margin-top:6px; font-size:12px; color:#666; text-align:center; word-break:break-all; }
+  .card img { 
+    max-width:100%; 
+    max-height:100%; 
+    object-fit:contain; 
+  }
 </style>
 </head>
 <body>
@@ -30,7 +51,7 @@
     const img = document.createElement('img');
     // Try JPG first
     img.src = `images/${baseName}.jpg`;
-    img.alt = `${baseName}`;
+    img.alt = baseName;
 
     // If JPG fails, try PNG; if both fail, remove card
     img.onerror = function onJpgError() {
@@ -40,16 +61,13 @@
       img.src = `images/${baseName}.png`;
     };
 
-    const label = document.createElement('div');
-    label.className = 'label';
-    label.textContent = `${baseName}`;
-
     card.appendChild(img);
-    card.appendChild(label);
     gallery.appendChild(card);
   }
 
-  for (let i = 1; i <= totalImages; i++) addCard(`img${i}`);
+  for (let i = 1; i <= totalImages; i++) {
+    addCard(`img${i}`);
+  }
 </script>
 </body>
 </html>
