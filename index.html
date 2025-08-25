@@ -41,7 +41,7 @@
 <div class="gallery" id="gallery"></div>
 
 <script>
-  const totalImages = 20; // set to your highest index
+  const totalImages = 20; // change this to however many images you have
   const gallery = document.getElementById('gallery');
 
   function addCard(baseName) {
@@ -49,11 +49,10 @@
     card.className = 'card';
 
     const img = document.createElement('img');
-    // Try JPG first
     img.src = `images/${baseName}.jpg`;
     img.alt = baseName;
 
-    // If JPG fails, try PNG; if both fail, remove card
+    // fallback to PNG
     img.onerror = function onJpgError() {
       img.onerror = function onPngError() {
         card.remove();
@@ -65,8 +64,14 @@
     gallery.appendChild(card);
   }
 
+  function padNumber(num, size) {
+    return num.toString().padStart(size, '0');
+  }
+
+  // Loop from 1 to totalImages and generate color_001, color_002, ...
   for (let i = 1; i <= totalImages; i++) {
-    addCard(`img${i}`);
+    const baseName = `color_${padNumber(i, 3)}`;
+    addCard(baseName);
   }
 </script>
 </body>
